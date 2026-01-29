@@ -1,2 +1,21 @@
+# Ambiente
 .env
+
+# Dependências
 node_modules/
+
+# Build (TypeScript)
+dist/
+
+# Prisma (Caso você use SQLite futuramente para testes rápidos)
+*.db
+*.db-journal
+
+# Logs e Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs (Opcional, mas boa prática)
+.vscode/
+.idea/

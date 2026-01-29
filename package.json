@@ -12,10 +12,12 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^22.13.13",
+    "prisma": "^7.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@prisma/client": "^7.3.0",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7"
   }
