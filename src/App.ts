@@ -1,7 +1,9 @@
 import { Client, GatewayIntentBits } from 'discord.js';
+import { CommandHandler } from './CommandHandler';
 
 export class App {
     private client: Client;
+    private commandHandler: CommandHandler;
 
     constructor() {
         this.client = new Client({
@@ -11,8 +13,10 @@ export class App {
                 GatewayIntentBits.MessageContent
             ]
         });
+        this.commandHandler = new CommandHandler();
     }
 
+    // Certifique-se de que este método existe e é publico
     public start(token: string) {
         this.client.once('ready', () => {
             console.log(`✅ Bot online como ${this.client.user?.tag}`);
@@ -24,7 +28,8 @@ export class App {
 
     private registerEvents() {
         this.client.on('messageCreate', (msg) => {
-            if (msg.content === '!ping') msg.reply('pong!');
+            if (msg.author.bot) return;
+            this.commandHandler.handle(msg);
         });
     }
 }

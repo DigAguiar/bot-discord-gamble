@@ -8,12 +8,19 @@ export class CommandHandler {
     };
 
     public handle(message: any) {
-        const args = message.content.split(' ');
-        const category = args[0]; // Ex: !gamble blackjack 100
+        // Ignorar mensagens de bots por segurança
+        if (message.author.bot) return;
 
-        // Aqui você direciona para o módulo correto
-        if (category.startsWith('!gamble')) {
+        const args = message.content.split(' ');
+        const prefix = args[0].toLowerCase();
+
+        // Direciona para o Gamble
+        if (prefix.startsWith('!gamble')) {
             this.modules.gamble.handleCommand(message, args);
+        } 
+        // Direciona para o Economy (Comandos como !bal, !money, !daily)
+        else if (prefix === '!bal' || prefix === '!balance' || prefix === '!daily') {
+            this.modules.economy.handleCommand(message, args);
         }
     }
 }
